@@ -51,53 +51,53 @@ class WallServiceTest {
     @Test
     fun AddAttachVideo(){
         val service = WallService()
-        val attach = Video()
+        //val attach = Video()
         val post1 = service.add(Post(from_id = 3, date = 1656494788, text = "Всем привет3!", reposts = null))
-        val result = service.addAttach(post1,"Видеозапись", attach)
+        val result = service.addAttach(post1,"Видеозапись")
         assertTrue(result)
     }
     @Test
     fun AddAttachDocum(){
         val service = WallService()
-        val attach = Docs()
+        //val attach = Docs()
         val post1 = service.add(Post(from_id = 3, date = 1656494788, text = "Всем привет3!", reposts = null))
-        val result = service.addAttach(post1,"Файл", attach)
+        val result = service.addAttach(post1,"Файл")
         assertTrue(result)
     }
 
     @Test
     fun AddAttachAudio(){
         val service = WallService()
-        val attach = Audio()
+        //val attach = Audio()
         val post1 = service.add(Post(from_id = 3, date = 1656494788, text = "Всем привет3!", reposts = null))
-        val result = service.addAttach(post1,"Аудиозапись", attach)
+        val result = service.addAttach(post1,"Аудиозапись")
         assertTrue(result)
     }
 
     @Test
     fun AddAttachPpoto(){
         val service = WallService()
-        val attach = Photo()
+        //val attach = Photo()
         val post1 = service.add(Post(from_id = 3, date = 1656494788, text = "Всем привет3!", reposts = null))
-        val result = service.addAttach(post1,"Фотография", attach)
+        val result = service.addAttach(post1,"Фотография")
         assertTrue(result)
     }
 
     @Test
     fun AddAttachSticker(){
         val service = WallService()
-        val attach = Sticker()
+        //val attach = Sticker()
         val post1 = service.add(Post(from_id = 3, date = 1656494788, text = "Всем привет3!", reposts = null))
-        val result = service.addAttach(post1,"Стикер", attach)
+        val result = service.addAttach(post1,"Стикер")
         assertTrue(result)
     }
 
     @Test
     fun AddAttachNoAvailable(){
         val service = WallService()
-        val attach = Thumb()
+        //val attach = Thumb()
         val post1 = service.add(Post(from_id = 3, date = 1656494788, text = "Всем привет3!", reposts = null))
-        val result = service.addAttach(post1,"Подарок", attach)
+        val result = service.addAttach(post1,"Подарок")
         assertFalse(result)
     }
 

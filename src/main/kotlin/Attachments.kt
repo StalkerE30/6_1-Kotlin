@@ -1,76 +1,79 @@
-class Attachments (
-    val type: String,
-    val attach: Attachment
+interface Attachment {
+    val type: String
+}
+
+data class VideoAttachment(override val type: String = "video",
+                           val video: Video = Video()) : Attachment
+class Video(
+    val id: Int = 0,
+    val ownerId: Int = 0,
+    val title: String = "",
+    val description: String = "",
+    val width: Int = 0,
+    val height: Int = 0,
+    val duration: Int = 0// длительность в секундах
 )
 
-interface Attachment{
-    val id: Int
-    val user_id: Int
-    val views: Int //количество просмотров/скачиваний
-}
-
-class Video(
-    //override val type: String ="Video",
-    override val id: Int = 0,
-    override val user_id: Int = 0,
-    override val views: Int = 0 ,
-    val size: Int = 0,
-    val ext: String = "avi",
-    val duration: Int = 0// длительность в секундах
-
-) : Attachment {
-
-}
+data class DocAttachment(override val type: String = "Doc",
+                           val doc: Docs = Docs()) : Attachment
 
 class Docs(
-    //override val type: String = "Doc",
-    override val id: Int = 0,
-    override val user_id: Int = 0,
-    override val views: Int = 0 ,
+    val id: Int = 0,
+    val ownerId: Int = 0,
+    val title: String = "",
     val size: Int = 0,
     val ext: String = "docx"
+)
 
+data class AudioAttachment(override val type: String = "Audio",
+                         val audio: Audio = Audio()) : Attachment
 
-) : Attachment {
-
-}
 
 class Audio(
-    //override val type: String = "Audio",
-    override val id: Int = 0,
-    override val user_id: Int = 0,
-    override val views: Int = 0,
-    val size: Int = 0,
-    val ext: String = "mp3",
-    val artist: String ="",
+    val id: Int = 0,
+    val ownerId: Int = 0,
+    val artist: String = "",
     val title: String = "",
-    val duration: Int = 0// длительность в секундах
+    val duration: Int = 0, // длительность в секундах
+    val url: String = "",
+    val albumID: Int = 0,
+    val genreId: Int =0
+)
 
-) : Attachment
+data class PhotoAttachment(override val type: String = "Photo",
+                           val photo: Photo = Photo()) : Attachment
 
 class Photo(
-    //override val type: String = "Photo",
-    override val id: Int = 0,
-    override val user_id: Int = 0,
-    override val views: Int = 0,
-    val album_id: Int = 0,
-    val ext: String = "jpg",
+    val id: Int = 0,
+    val albumId: Int = 0,
+    val ownerId: Int = 0,
+    val userId: Int = 0,
+    val text: String = "",
+    val date: Int = 0,
     val width: Int = 0,
     val height: Int = 0
+)
 
-) : Attachment
+data class StickerAttachment(override val type: String = "Sticker",
+                           val sticker: Sticker = Sticker()) : Attachment
 
 class Sticker(
-    override val id: Int = 0,
-    override val user_id: Int = 0,
-    override val views: Int = 0,
-    val animation_url: String = "",
-    val is_allowed: Boolean = true
-): Attachment
+    val productId: Int = 0,
+    val stickerId: Int = 0,
+    val images: Array<Images> = emptyArray(),
+    val animationUrl: String = "",
+    val isAllowed: Boolean = true
+)
 
-class Thumb(
-    override val id: Int =0,
-    override val user_id: Int = 0,
-    override val views: Int = 0,
-    val thumb_256: String = ""
-): Attachment
+data class Images(
+    val url: String = "",
+    val width: Int = 0,
+    val height: Int = 0
+)
+
+//class Thumb(
+//    val id: Int =0,
+//    val thumb256: String = "",
+//    val thumb96: String = "",
+//    val thumb48: String = ""
+//)

@@ -23,7 +23,7 @@ data class Post(
     val can_delete: Boolean = true, // Информация о том, может ли текущий пользователь удалить запись
     val can_edit: Boolean = true, // Информация о том, может ли текущий пользователь редактировать запись
     val is_pinned: Boolean = false, // Информация о том, что запись закреплена
-    var attachments: Array<Attachments> = emptyArray()
+    var attachments: Array<Attachment> = emptyArray()
 )
 
 class Views(
@@ -79,27 +79,27 @@ class WallService {
         return find
     }
 
-    fun addAttach(post: Post, type: String, attach: Attachment): Boolean {
+    fun addAttach(post: Post, type: String): Boolean {
         var result = false
         when (type) {
             "Видеозапись" -> {
-                post.attachments += Attachments("Video", Video())
+                post.attachments += VideoAttachment()
                 result = true
             }
             "Файл" -> {
-                post.attachments += Attachments("Doc", Docs())
+                post.attachments += DocAttachment()
                 result = true
             }
             "Аудиозапись" -> {
-                post.attachments += Attachments("Audio", Audio())
+                post.attachments += AudioAttachment()
                 result = true
             }
             "Фотография" -> {
-                post.attachments += Attachments("Photo", Photo())
+                post.attachments += PhotoAttachment()
                 result = true
             }
             "Стикер" -> {
-                post.attachments += Attachments("Sticker", Sticker())
+                post.attachments += StickerAttachment()
                 result = true
             }
         }
